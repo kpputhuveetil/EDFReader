@@ -1,4 +1,8 @@
-function t = read_case_data(dataPath)
+function t = read_case_data(dataPath, datarecordtype)
+% reads in all EDF files at the specified data path in the specified format
+%   datarecordtype can have the values 'vector' or 'timetable'
+
+% TODO: preallocate timetable to reduce processing time!
     cd(dataPath);
     all_files = dir( "*.edf" );
     name = {}; data = {}; info = {};
@@ -6,8 +10,8 @@ function t = read_case_data(dataPath)
         file = all_files(i).name;
         name = [name; {file(1:end-4)}];
         [data{i,1}, annotations{i,1}] = edfread(file, ...
-                                                'DataRecordOutputType', 'timetable', ...
-                                                'TimeOutputType','datetime')
+                                                'DataRecordOutputType', datarecordtype, ...
+                                                'TimeOutputType','datetime');
         info = [info; {edfinfo(file)}];
     end
     
