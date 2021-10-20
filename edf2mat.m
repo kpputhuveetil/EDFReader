@@ -59,7 +59,8 @@ end
 
 % retime the timetable of all the EEG data so that that any discontinuities
 % (where there are irregularites in spacing)are filled with NaN values
-EEG_retimed = retime(concat_EEG_data,'regular','fillwithmissing','SampleRate',128);
+sample_rate = rows_per_record/seconds(raw_from_EDF.info{'EEG'}.DataRecordDuration)
+EEG_retimed = retime(concat_EEG_data,'regular','fillwithmissing','SampleRate',sample_rate);
 
 %% Replace record representation of EEG data with this new continous, retimed representation
 allEDFs = raw_from_EDF
