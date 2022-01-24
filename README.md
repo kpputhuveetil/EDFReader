@@ -13,4 +13,4 @@ To run edf2mat.m, first clone this repository. Modify the codePath, dataPath, an
 - dataPath = path to directory that folder of case files is in (look at example in script)
 - case_data = name of the folder of case files
 
-Reading unpacked and colidated files also requires that the given System Requirements are met.
+Reading the unpacked file output by edf2mat.m also requires that the given System Requirements are met.
